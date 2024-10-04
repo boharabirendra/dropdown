@@ -1,0 +1,24 @@
+.dropdownmenu {
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: rem(10);
+  width: rem(300);
+  margin: rem(8) auto;
+  overflow: hidden;
+
+  &--item {
+    list-style-type: none;
+    padding: rem(0);
+    li {
+      padding: rem(7);
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(172, 168, 168);
+      }
+    }
+
+    li:not(:last-child) {
+      border-bottom: 1px solid rgb(202, 202, 202);
+    }
+  }
+}
