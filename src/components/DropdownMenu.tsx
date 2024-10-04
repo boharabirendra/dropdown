@@ -8,25 +8,25 @@ type dropdownmenuprops = {
 
 const data: dropdownprops[] = [
   {
-    text: "item 1",
+    text: "Computer Science",
   },
   {
-    text: "item 2",
+    text: "Cloud computing",
   },
   {
-    text: "item 3",
+    text: "Database management system",
   },
   {
-    text: "item 4",
+    text: "Cyber security",
   },
   {
-    text: "item 5",
+    text: "Information technology",
   },
   {
-    text: "item 6",
+    text: "Cryptography",
   },
   {
-    text: "item 7",
+    text: "Data structure & algorithm",
   },
 ];
 

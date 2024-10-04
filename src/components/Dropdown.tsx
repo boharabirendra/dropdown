@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import { useState } from "react";
 import DropdownMenu from "./DropdownMenu";
+import Overlay from "./Overlay";
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,6 @@ const Dropdown = () => {
       <button
         onClick={() => {
           setIsOpen(!isOpen);
-          console.log("clear");
         }}
         className="dropdown"
       >
@@ -29,7 +29,12 @@ const Dropdown = () => {
           />
         </span>
       </button>
-      {isOpen && <DropdownMenu onclick={handleSelect} />}
+      {isOpen && (
+        <>
+          <DropdownMenu onclick={handleSelect} />
+          <Overlay setIsOpen={setIsOpen} />
+        </>
+      )}
     </div>
   );
 };
