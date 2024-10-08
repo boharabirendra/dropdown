@@ -1,42 +1,26 @@
-type dropdownprops = {
+import { data } from "../constants/dropdown";
+
+export type dropdownprops = {
   text: string;
 };
 
 type dropdownmenuprops = {
   onclick: (e: React.MouseEvent<HTMLLIElement>) => void;
+  selectedIndex: number;
 };
 
-const data: dropdownprops[] = [
-  {
-    text: "Computer Science",
-  },
-  {
-    text: "Cloud computing",
-  },
-  {
-    text: "Database management system",
-  },
-  {
-    text: "Cyber security",
-  },
-  {
-    text: "Information technology",
-  },
-  {
-    text: "Cryptography",
-  },
-  {
-    text: "Data structure & algorithm",
-  },
-];
-
-const DropdownMenu = ({ onclick }: dropdownmenuprops) => {
+const DropdownMenu = ({ onclick, selectedIndex }: dropdownmenuprops) => {
   return (
     <div className="dropdownmenu">
       <div className="dropdownmenu__items">
         <ul className="dropdownmenu--item">
           {data.map((item, index) => (
-            <li key={index} data-value={item.text} onClick={onclick}>
+            <li
+              key={index}
+              className={index === selectedIndex ? "active" : ""}
+              data-value={item.text}
+              onClick={onclick}
+            >
               {item.text}
             </li>
           ))}

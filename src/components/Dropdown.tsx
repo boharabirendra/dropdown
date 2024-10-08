@@ -1,11 +1,35 @@
 import { clsx } from "clsx";
 import { useState } from "react";
-import DropdownMenu from "./DropdownMenu";
+
 import Overlay from "./Overlay";
+import DropdownMenu from "./DropdownMenu";
+import { data } from "../constants/dropdown";
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Select");
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  console.log(isOpen);
+
+  const handleKeyDownUp = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      setSelectedIndex((prevIndex) =>
+        prevIndex < data.length - 1 ? prevIndex + 1 : 0
+      );
+    } else if (e.key === "ArrowUp") {
+      setSelectedIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : data.length - 1
+      );
+    }
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      setSelectedItem(data[selectedIndex].text);
+      setIsOpen(false);
+    }
+  };
 
   const handleSelect = (e: React.MouseEvent<HTMLLIElement>) => {
     setSelectedItem(e.currentTarget.dataset.value || "Select");
@@ -19,6 +43,8 @@ const Dropdown = () => {
           setIsOpen(!isOpen);
         }}
         className="dropdown"
+        onKeyDown={handleKeyDownUp}
+        onKeyUp={handleKeyUp}
       >
         <span>{selectedItem}</span>
         <span>
@@ -31,7 +57,7 @@ const Dropdown = () => {
       </button>
       {isOpen && (
         <>
-          <DropdownMenu onclick={handleSelect} />
+          <DropdownMenu onclick={handleSelect} selectedIndex={selectedIndex} />
           <Overlay setIsOpen={setIsOpen} />
         </>
       )}
